@@ -1,0 +1,12 @@
+Sep 21 17:57:38 ansible3 sshd-session[7913]: Accepted publickey for ansible from 192.168.10.10 port 52348 ssh2: RSA SHA256:qOaQsHnHpLn3GVwa3Vgq0JoiKstP4pWEnaZyib3uehY
+Sep 21 17:57:38 ansible3 (systemd)[7918]: pam_unix(systemd-user:session): session opened for user ansible(uid=1001) by ansible(uid=0)
+Sep 21 17:57:38 ansible3 sshd-session[7913]: pam_unix(sshd:session): session opened for user ansible(uid=1001) by ansible(uid=0)
+Sep 21 17:57:39 ansible3 sudo[8075]: ansible : TTY=pts/0 ; PWD=/home/ansible ; USER=root ; COMMAND=/bin/sh -c 'echo BECOME-SUCCESS-nurwfwexfcmezbdagewssbkfzzhysdsm ; /usr/bin/python3.12 /home/ansible/.ansible/tmp/ansible-tmp-1789981058.9616594-7888-134293118156017/AnsiballZ_setup.py'
+Sep 21 17:57:39 ansible3 sudo[8075]: pam_unix(sudo:session): session opened for user root(uid=0) by ansible(uid=1001)
+Sep 21 17:57:40 ansible3 sudo[8075]: pam_unix(sudo:session): session closed for user root
+Sep 21 17:57:40 ansible3 sudo[8282]: ansible : TTY=pts/0 ; PWD=/home/ansible ; USER=root ; COMMAND=/bin/sh -c 'echo BECOME-SUCCESS-spizgkyqprxtutuqoiofouavwyplascd ; /usr/bin/python3.12 /home/ansible/.ansible/tmp/ansible-tmp-1789981060.251615-7957-143086754355684/AnsiballZ_slurp.py'
+Sep 21 17:57:40 ansible3 sudo[8282]: pam_unix(sudo:session): session opened for user root(uid=0) by ansible(uid=1001)
+Sep 21 17:57:40 ansible3 sudo[8282]: pam_unix(sudo:session): session closed for user root
+Sep 21 17:58:14 ansible3 sudo[8478]: ansible : TTY=pts/0 ; PWD=/home/ansible ; USER=root ; COMMAND=/bin/sh -c 'echo BECOME-SUCCESS-toxcovdxfenxblzrsryouaobinmvxpix ; /usr/bin/python3.12 /home/ansible/.ansible/tmp/ansible-tmp-1789981094.2719088-8116-85137056342822/AnsiballZ_setup.py'
+Sep 21 17:58:14 ansible3 sudo[8478]: pam_unix(sudo:session): session opened for user root(uid=0) by ansible(uid=1001)
+Sep 21 17:58:15 ansible3 sudo[8478]: pam_unix(sudo:session): session closed for user root

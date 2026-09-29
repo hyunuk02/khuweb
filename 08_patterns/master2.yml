@@ -1,0 +1,8 @@
+- name: Play ONE
+  hosts: localhost
+  tasks:
+    - ansible.builtin.debug:
+        msg: Play one
+
+- name: Import Playbook
+  ansible.builtin.import_playbook: play2.yml

@@ -1,0 +1,8 @@
+---
+- name: Demo Web
+  hosts: all
+  tasks:
+    - name: Demo Web Start
+      ansible.builtin.include_role:
+        name: hyunuk02.khuweb
+

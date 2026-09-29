@@ -1,0 +1,38 @@
+#SPDX-License-Identifier: MIT-0
+---
+# tasks file for myfirewall
+#####################
+# 1) 방화벽 포트 제거 - ex) http. https
+# 2) 서비스 종료 - ex) httpd, firewalld
+# 3) 디렉토리/파일 삭제 - ex) /var/www/html/index.html, ...
+# 4) 패키지 삭제 - ex) httpd, mod_ssl
+#####################
+
+# 1) 방화벽 포트 제거 - ex) http. https
+- name: 1) 방화벽 포트 제거 "{{ fw_svcs }}"
+  ansible.posix.firewalld:
+    service: "{{ item }}"
+    state: disabled
+    permanent: true
+    immediate: true
+  loop: "{{ fw_svcs }}"
+# 2) 서비스 종료 - ex) httpd, firewalld
+- name: 1) 서비스 종료 - "{{ svcs }}"
+  ansible.builtin.service:
+    name: "{{ item }}"
+    state: stopped
+    enabled: false
+  loop: "{{ svcs }}"
+  ignore_errors: true
+
+# 3) 디렉토리/파일 삭제 - ex) /var/www/html/index.html, ...
+- name: 3) 디렉토리/파일 삭제 "{{ myfiles }}"
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: absent
+  loop: "{{ myfiles }}"
+# 4) 패키지 삭제 - ex) httpd, mod_ssl
+- name: 4) 패키지  삭제
+  ansible.builtin.dnf:
+    name: "{{ pkgs }}"
+    state: absent

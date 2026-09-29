@@ -1,0 +1,84 @@
+---
+- name: SELinux 웹 서비스 환경 복원 (Cleanup & Restore)
+  hosts: webservers
+  become: true
+
+  vars:
+    selinux_state: enforcing
+    selinux_policy: targeted
+
+    selinux_booleans:
+      - name: httpd_can_network_connect
+        state: false
+        persistent: true
+
+  tasks:
+
+    # --------------------------------------------------
+    # 1. 방화벽 서비스 기동 후 포트 제거 (데몬 실행 보장)
+    # --------------------------------------------------
+    - name: 방화벽 서비스 시작
+      ansible.builtin.systemd:
+        name: firewalld
+        state: started
+      ignore_errors: true
+
+    - name: 방화벽 설정 - 8888 포트 제거
+      ansible.posix.firewalld:
+        port: 8888/tcp
+        permanent: true
+        immediate: true
+        state: disabled
+      ignore_errors: true
+
+    - name: 방화벽 및 웹 서비스 중지 및 비활성화
+      ansible.builtin.systemd:
+        name: "{{ item }}"
+        state: stopped
+        enabled: false
+      loop:
+        - httpd
+        - firewalld
+      ignore_errors: true
+
+    # --------------------------------------------------
+    # 2. RHEL System Role - SELinux (기본 설정 복원)
+    # --------------------------------------------------
+    - name: SELinux 설정 초기화 (시스템 역할)
+      ansible.builtin.include_role:
+        name: rhel-system-roles.selinux
+
+    # --------------------------------------------------
+    # 3. 커스텀 fcontext 및 포트 직접 제거 (setype 포함)
+    # --------------------------------------------------
+    - name: 웹루트 디렉토리 fcontext 제거
+      community.general.sefcontext:
+        target: '/www(/.*)?'
+        state: absent
+
+    - name: SELinux Port 8888 제거
+      community.general.seport:
+        ports: 8888
+        proto: tcp
+        setype: http_port_t
+        state: absent
+
+    # --------------------------------------------------
+    # 4. 설정 파일 및 웹 루트 디렉토리 삭제
+    # --------------------------------------------------
+    - name: 웹 루트 디렉토리(/www) 삭제
+      ansible.builtin.file:
+        path: /www
+        state: absent
+
+    # --------------------------------------------------
+    # 5. 패키지 삭제 (httpd, mod_ssl, firewalld)
+    # --------------------------------------------------
+    - name: WEB 및 방화벽 패키지 제거
+      ansible.builtin.dnf:
+        name:
+          - httpd
+          - mod_ssl
+          - firewalld
+        state: absent
+

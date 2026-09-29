@@ -1,0 +1,5 @@
+- name: Prepare the web server
+  ansible.bultin.import_playbook: web.yml
+
+- name: Prepare the database server
+  ansible.builtin.import_playbook: db.yml

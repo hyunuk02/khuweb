@@ -1,0 +1,13 @@
+Sep 21 17:57:38 ansible2 sshd-session[2773]: Accepted publickey for ansible from 192.168.10.10 port 48746 ssh2: RSA SHA256:qOaQsHnHpLn3GVwa3Vgq0JoiKstP4pWEnaZyib3uehY
+Sep 21 17:57:38 ansible2 (systemd)[2778]: pam_unix(systemd-user:session): session opened for user ansible(uid=1001) by ansible(uid=0)
+Sep 21 17:57:38 ansible2 sshd-session[2773]: pam_unix(sshd:session): session opened for user ansible(uid=1001) by ansible(uid=0)
+Sep 21 17:57:39 ansible2 sudo[2936]: ansible : TTY=pts/0 ; PWD=/home/ansible ; USER=root ; COMMAND=/bin/sh -c 'echo BECOME-SUCCESS-fqneeofbhpzeyumiapgnvqappmhzzkgz ; /usr/bin/python3.12 /home/ansible/.ansible/tmp/ansible-tmp-1789981059.0130146-7887-71504937191785/AnsiballZ_setup.py'
+Sep 21 17:57:39 ansible2 sudo[2936]: pam_unix(sudo:session): session opened for user root(uid=0) by ansible(uid=1001)
+Sep 21 17:57:40 ansible2 sudo[2936]: pam_unix(sudo:session): session closed for user root
+Sep 21 17:57:40 ansible2 sudo[3143]: ansible : TTY=pts/0 ; PWD=/home/ansible ; USER=root ; COMMAND=/bin/sh -c 'echo BECOME-SUCCESS-ziiorlxgozsjxlyqgdpcgqlipukznygs ; /usr/bin/python3.12 /home/ansible/.ansible/tmp/ansible-tmp-1789981060.2447374-7955-35259430489609/AnsiballZ_slurp.py'
+Sep 21 17:57:40 ansible2 sudo[3143]: pam_unix(sudo:session): session opened for user root(uid=0) by ansible(uid=1001)
+Sep 21 17:57:40 ansible2 sudo[3143]: pam_unix(sudo:session): session closed for user root
+Sep 21 17:58:14 ansible2 sudo[3339]: ansible : TTY=pts/0 ; PWD=/home/ansible ; USER=root ; COMMAND=/bin/sh -c 'echo BECOME-SUCCESS-hlhzfhjmzxzlzyfczirvswemfzbhlkfc ; /usr/bin/python3.12 /home/ansible/.ansible/tmp/ansible-tmp-1789981094.2688916-8115-233071844199124/AnsiballZ_setup.py'
+Sep 21 17:58:14 ansible2 sudo[3339]: pam_unix(sudo:session): session opened for user root(uid=0) by ansible(uid=1001)
+Sep 21 17:58:15 ansible2 sudo[3339]: pam_unix(sudo:session): session closed for user root
+Sep 21 17:58:15 ansible2 sudo[3546]: ansible : TTY=pts/0 ; PWD=/home/ansible ; USER=root ; COMMAND=/bin/sh -c 'echo BECOME-SUCCESS-gfixjhjmxpjpwflzycojczhqwmmgidcx ; /usr/bin/python3.12 /home/ansible/.ansible/tmp/ansible-tmp-1789981095.5336616-8166-105997164976395/AnsiballZ_slurp.py'

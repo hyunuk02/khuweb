@@ -1,0 +1,32 @@
+---
+######################################
+# 복원 플레이북 (Restore Playbook)
+# 1. 패키지 제거 (bsc, msmsms)
+# 2. GPG Key 제거
+# 3. yum 레포지토리 파일 제거 (example.repo)
+######################################
+- name: 레포지토리 및 패키지 복원
+  hosts: servers
+  become: true
+  vars:
+    pkg_bsc: bsc
+    pkg_ms: msmsms
+
+  tasks:
+    - name: 1) 패키지 제거 (bsc, msmsms)
+      ansible.builtin.dnf:
+        name:
+          - "{{ pkg_bsc }}"
+          - "{{ pkg_ms }}"
+        state: absent
+
+    - name: 2) GPG Key 제거
+      ansible.builtin.rpm_key:
+        state: absent
+        key: http://192.168.10.10/repo/RPM-GPG-KEY-test
+      ignore_errors: true
+
+    - name: 3) yum 레포지토리 파일 제거 (/etc/yum.repos.d/example.repo)
+      ansible.builtin.file:
+        path: /etc/yum.repos.d/example.repo
+        state: absent
